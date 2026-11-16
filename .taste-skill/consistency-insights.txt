@@ -1,0 +1,113 @@
+﻿consistency  C:\Users\kwena\Downloads\euclidean capital\insights.html
+
+1440x900  7 screens  7 FAIL  12 WARN
+  FAIL spill           div.wrap > div.group:nth-of-type(2) > div.grid.insights-grid > article.card.span-4:nth-of-type(4)  "Private markets 20 Sep 2026 Active capit"
+       runs 83px past the bottom edge of the panel it sits on (section#briefings) (and 2 more like it: article.card.span-4:nth-of-type(5), article.card.span-4:nth-of-type(6))  [1440-09-spill.jpg]
+       fix: keep the box inside the panel it starts on: shrink it, or grow the panel to hold it
+  FAIL overlap-text    div.wrap > div.group:nth-of-type(2) > div.btn-row > a.btn.btn--secondary  "Request the briefing pack"
+       lies over the text "Case study on operational capital deploy" (article.card.span-4:nth-of-type(4) > p.excerpt)  [1440-10-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL section-gaps    main#top > section.hero.hero--split / section#featured
+       184px between these sections, +69% against the median 109px of gaps at a change of ground  [1440-03-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL section-gaps    section#briefings / footer#contact
+       34px between these sections, -69% against the median 109px  [1440-11-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN overlap-text    div.wrap > div.group:nth-of-type(2) > div.btn-row > a.btn.btn--secondary  "Request the briefing pack"
+       jammed against the heading "Active capital in mid-market S": 1px from its line, where the letters' descenders reach  [1440-12-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  WARN scroll-linked   section#statement > div.wrap > h2.mo-wh__text.fill > span.mo-w:nth-of-type(10)  "carry"
+       its colour changes with the scroll and changes back when the scroll goes back (colour), with 1 part inside it, eased after the scroll stops; 14 more parts of this section change with the scroll too (span.mo-w:nth-of-type(11), span.mo-w:nth-of-type(12), span.mo-w:nth-of-type(13), span.mo-w:nth-of-type(15), ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [1440-05-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-reveal   section#statement > div.wrap > h2.mo-wh__text.fill  "We publish weekly research on the transm"
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-06-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN copy-headings   div.group:nth-of-type(2) > div.grid.insights-grid > article.card.span-4:nth-of-type(1) > h3  "Sovereign debt restructuring in regional"
+       the card title "Sovereign debt restructuring in regional markets" names no product, part, place or section (4 card titles like it) (and 3 more like it: "Style-agnostic execution", "Critical minerals and ge", "Forensic balance sheet s")  [1440-13-copy-headings.jpg]
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  WARN copy-actions    header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Request a briefing"
+       3 labels for one target /contact.html#inquiry: "Request a briefing", "Request the full briefing", "Request the briefing pack"  [1440-01-copy-actions.jpg]
+       fix: few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close
+  WARN section-gaps    main#top > section.hero.hero--split / section#featured
+       uneven space at the edge of a band: 64px outside its edge, 120px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-04-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN photo-set       div.wrap > div.hero-text.grid > div.hero-visual.frame > img.frame__img  "network-1600.jpg"
+       2 photographs in more than one look: saturation from 0.14 to 0.53; the odd one out is network-1600.jpg  [1440-02-photo-set.jpg]
+       fix: grade the photographs to one look (light, colour, warmth), or replace the odd one out
+  WARN copy-length     section#statement > div.wrap > h2.mo-wh__text.fill  "We publish weekly research on the transm"
+       a section heading of 24 words on 4 lines at 48px: a paragraph set in display type  [1440-07-copy-length.jpg]
+       fix: cut the heading to one short line (2 to 12 words) and move the rest into the text under it
+  WARN photo-repeat    div.wrap > div.group:nth-of-type(1) > figure.shot.shot--band > img  "globe.jpg"
+       the photograph globe.jpg is shown 2 times on the page: a picture the visitor has already seen  [1440-08-photo-repeat.jpg]
+       fix: show each photograph once: a different picture of what this section names, or none
+  WARN action-repeat   header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "request a briefing"
+       "request a briefing" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it  [1440-14-action-repeat.jpg]
+       fix: show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once
+  FAIL section-height  section#briefings  "Research & intelligence All weekly resea"
+       the section's content does not fit it: its content is 83px taller than the section (scrollHeight 1883, clientHeight 1800); its lowest content ends 1848px below its top, past 1728px (the section less 72px of bottom padding); 7 parts lie outside the section's box (SR-2)  [1440-rhythm-01-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-height  div.wrap > div.group:nth-of-type(2) > div.grid.insights-grid > article.card.span-4:nth-of-type(4)  "Private markets 20 Sep 2026 Active capit"
+       "Private markets 20 Sep 2026 Acti" lies outside section 4 (1485 to 1883px from its top; the section is 1800px tall) (SR-2)  [1440-rhythm-02-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-height  div.group:nth-of-type(2) > div.grid.insights-grid > article.card.span-4:nth-of-type(4) > p.by  "Case note 12 ┬╖ 5 min read"
+       "Case note 12 ┬╖ 5 min read" lies outside section 4 (1800 to 1824px from its top; the section is 1800px tall) (and 1 more like it: "Listed equities 14 Sep 2") (SR-2)  [1440-rhythm-03-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  WARN section-air     section#featured  "Featured briefing ┬╖ 20 October 2026 Rese"
+       the content fills 52.6% of the section's height (474 of 900px): 55% or more (40% WARN) (SR-3)  [1440-rhythm-04-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  WARN one-section     section#briefings  "Research & intelligence All weekly resea"
+       the screen at scroll 4500px (stride 5) shows 11px of section 4 beside section 5: a screen shows one section (another may peek 8px, 24px WARN) (SR-4)  [1440-rhythm-05-one-section.jpg]
+       fix: make each section exactly one screen or two, so a screen shows one section and no neighbour peeks
+
+checks
+  PASS assets                 PASS shader-lint            PASS gl-fallback            
+  PASS empty-visual           PASS hero-fill              PASS flush                  
+  PASS placeholder            PASS sample-label           PASS caption                
+  PASS credit-wall            PASS nav                    PASS nav-covers             
+  FAIL spill                  SKIP off-viewport           PASS fold-card              
+  PASS hover-spill            FAIL overlap-text           SKIP collide                
+  SKIP tap-size               PASS row-gap                PASS cut-text               
+  PASS fold-cut               PASS marquee                WARN scroll-linked          
+  WARN scroll-reveal          PASS pinned                 PASS loop-pause             
+  SKIP reduced-motion         SKIP hidden-content         PASS webgl                  
+  PASS no-visual              PASS text-only              PASS card-visual            
+  PASS hidden-visual          PASS card-family            PASS card-layout            
+  PASS nesting                PASS effect-repeat          PASS ui-fit                 
+  PASS ui-centre              PASS dark-ground            PASS button-styles          
+  PASS button-shape           PASS same-action            PASS button-picture         
+  PASS cta                    PASS pricing-tiers          PASS copy-headline          
+  PASS copy-fact              WARN copy-headings          PASS copy-buttons           
+  WARN copy-actions           PASS heading-scale          PASS stagger                
+  PASS top-stagger            PASS off-grid               PASS col-edge               
+  PASS right-edge             PASS centre-axis            PASS tilt                   
+  PASS contrast               PASS text-contrast          PASS body-size              
+  PASS busy-ground            FAIL section-gaps           PASS proximity              
+  PASS hole                   PASS links                  PASS forms                  
+  PASS photo-upscale          WARN photo-set              PASS photo-credit           
+  PASS nav-family             PASS nav-labels             PASS link-styles            
+  PASS heading-align          PASS label-centre           PASS fake-button            
+  PASS stranded-action        PASS orphan                 PASS unit-break             
+  PASS tab-wrap               PASS effects-fit            PASS fade-cut               
+  PASS photo-weight           WARN copy-length            PASS nav-current            
+  PASS progress-bar           WARN photo-repeat           PASS button-contrast        
+  PASS photo-print            PASS grounds                PASS split-align            
+  PASS fact-agree             PASS fold-action            PASS action-count           
+  PASS one-screen             PASS hover                  PASS hover-move             
+  PASS product-shown          PASS same-object            PASS font-load              
+  PASS visual-caption         PASS visual-empty           PASS effect-kind            
+  PASS hero-enter             PASS moment-none            PASS street-number          
+  PASS postcode               PASS coordinates            PASS company-number         
+  PASS phone-number           PASS hero-screen            FAIL section-height         
+  WARN section-air            WARN one-section            PASS one-heading            
+  PASS container-edges        PASS row-lines              PASS split-pair             
+  PASS motion-layer           PASS count-text             PASS loop-cycle             
+  PASS section-tile           PASS empty-area             PASS a11y-name              
+  PASS img-alt                PASS field-label            PASS heading-order          
+  PASS tabindex               PASS focus-ring             PASS focus-visible          
+  PASS focus-hidden           PASS skip-link              PASS menu-toggle            
+  PASS lang                   PASS page-meta              PASS share-meta             
+  WARN action-repeat          PASS map-link               PASS open-now               
+  PASS assumed                PASS run-on                 PASS form-fields            
+  PASS form-send              
+
+total  7 FAIL  12 WARN  (crops and report.json in C:\Users\kwena\Downloads\euclidean capital\.taste-skill\report-insights)

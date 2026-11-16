@@ -1,0 +1,122 @@
+﻿consistency  C:\Users\kwena\Downloads\euclidean capital\index.html
+
+1440x900  16 screens, 1 held section  8 FAIL  14 WARN
+  FAIL loop-pause      div.wrap > div.group:nth-of-type(2) > div.people.fill > article.card:nth-of-type(1)  "Sibo Khumalo Chief Executive Officer & C"
+       still moving 8 s after it came on screen (320x128px of the screen changes), with no pause button  [1440-17-loop-pause.jpg]
+       fix: add a pause button to the visual, or stop the loop on its finished picture within 5 s
+  FAIL loop-pause      div.wrap > div.group:nth-of-type(2) > div.people.fill > article.card:nth-of-type(2)  "Langa Malimela Chief Research Officer & "
+       still moving 8 s after it came on screen (320x128px of the screen changes), with no pause button  [1440-18-loop-pause.jpg]
+       fix: add a pause button to the visual, or stop the loop on its finished picture within 5 s
+  FAIL loop-pause      div.wrap > div.group:nth-of-type(2) > div.people.fill > article.card:nth-of-type(3)  "Bryan Shuping Executive Chairman Thirty-"
+       still moving 8 s after it came on screen (288x128px of the screen changes), with no pause button  [1440-19-loop-pause.jpg]
+       fix: add a pause button to the visual, or stop the loop on its finished picture within 5 s
+  FAIL section-gaps    section#strategies / section#commentary
+       408px between these sections, +122% against the median 184px  [1440-15-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL postcode        div.span-6:nth-of-type(1) > div.offices > div:nth-of-type(1) > address  "145 Second Street"
+       an Icelandic postcode with its town: "145 Second Street"; with the street it points at one building, which the brief does not give  [1440-11-postcode.jpg]
+       fix: drop the postcode: the street and the district say where it is (copy.md, Address)
+  FAIL phone-number    div.span-6:nth-of-type(1) > div.offices > div:nth-of-type(2) > address  "+27 64 686 6741"
+       a phone number in international format: "+27 64 686 6741"; a visitor can dial it and reach a stranger (and in the same element: "+27 71 443 5132") (and 1 more like it: div.offices > div:nth-of-type(2) > address > a:nth-of-type(1))  [1440-12-phone-number.jpg]
+       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
+  WARN scroll-linked   section#thesis > div.wrap > h2.mo-wh__text.fill > span.mo-w:nth-of-type(7)  "conducted"
+       its colour changes with the scroll and changes back when the scroll goes back (colour), with 1 part inside it, eased after the scroll stops; 10 more parts of this section change with the scroll too (span.mo-w:nth-of-type(8), span.mo-w:nth-of-type(9), span.mo-w:nth-of-type(10), span.mo-w:nth-of-type(11), ...) (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [1440-04-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-linked   section#research > div.wrap.mo-pc__grid  "THE ANALYTICAL ENGINE Our research proce"
+       held on screen for 1 screen of scroll (position: sticky), and 6 parts inside change as the page scrolls through it (colour, opacity, moves): h3, h3, figure.mo-pc__visual:nth-of-type(1), figure.mo-pc__visual:nth-of-type(2), ... (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)  [1440-14-scroll-linked.jpg]
+       fix: remove the scroll-driven motion; motion lives inside a visual as a small loop
+  WARN scroll-reveal   section#thesis > div.wrap > h2.mo-wh__text.fill  "Consistent alpha follows from rigorous r"
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-05-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN scroll-reveal   section#research  "THE ANALYTICAL ENGINE Our research proce"
+       starts "border-left-color" (0.3 s) the moment it is scrolled into view (an IntersectionObserver) on li.mo-pc__step:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-06-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN no-visual       section#pedigree  "Institutional track record built at glob"
+       pictures, effects and mocks cover 21% of this section; a feature section needs a visual (about 25% or more)  [1440-10-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN copy-headings   div.briefings.fill > article:nth-of-type(2) > div:nth-of-type(2) > h3  "Sovereign debt restructuring dynamics in"
+       "Sovereign debt restructuring dynamics in frontier SADC" names no product, part, place or section (the one brand line a page may have)  [1440-08-copy-headings.jpg]
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  WARN copy-headings   div.wrap > div.pillars.fill > article.card:nth-of-type(2) > h3  "Style-agnostic execution"
+       the card title "Style-agnostic execution" names no product, part, place or section (3 card titles like it) (and 2 more like it: "Dual-arena coverage", "Executive pedigree")  [1440-02-copy-headings.jpg]
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  WARN copy-actions    header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Request a briefing"
+       4 labels for one target /contact.html#inquiry: "Request a briefing", "Request the methodology walkthrough", "Request the strategy pack", "Inquire re co-investments"  [1440-01-copy-actions.jpg]
+       fix: few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close
+  WARN section-gaps    main#top > section.hero.hero--photo / section#framework
+       120px between these sections, -35% against the median 184px  [1440-03-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#commentary / section#pedigree
+       uneven space at the edge of a band: 120px outside its edge, 72px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-09-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN photo-set       div.wrap.mo-pc__grid > div.mo-pc__visuals.frame > figure.mo-pc__visual:nth-of-type(2) > img  "flows-736.jpg"
+       4 photographs in more than one look: lightness from 0.05 to 0.48; saturation from 0.21 to 0.74; the odd one out is flows-736.jpg  [1440-07-photo-set.jpg]
+       fix: grade the photographs to one look (light, colour, warmth), or replace the odd one out
+  WARN action-repeat   header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "request a briefing"
+       "request a briefing" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it  [1440-16-action-repeat.jpg]
+       fix: show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once
+  WARN form-fields     input#f-org
+       the name field lacks autocomplete="name": the phone shows the wrong keyboard and nothing fills it in  [1440-13-form-fields.jpg]
+       fix: give each field its type, autocomplete and inputmode, never block paste or disable the button before a submit, and add the status line (references/system.md, Forms)
+  FAIL section-height  section#inquiry  "Institutional inquiry gateway Contact th"
+       the section's content does not fit it: its lowest content ends 841px below its top, past 828px (the section less 72px of bottom padding) (SR-2)  [1440-rhythm-01-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL container-edges div.briefings.fill > article:nth-of-type(1) > div.meta > p.cat  "Geoeconomics"
+       3 text blocks start on a left line at x 114, 34px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also "Sub-Saharan Africa", "Listed process") (SR-6)  [1440-rhythm-02-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  WARN container-edges div.wrap.mo-pc__grid > div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(1)  "Geoeconomic and sovereign research Multi"
+       3 text blocks start on a left line at x 106, 26px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also "Quantitative flow research Marke", "Instrument-level fundamental res") (it is in a scroll scene: told as a WARN) (SR-6)  [1440-rhythm-03-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+
+checks
+  PASS assets                 PASS shader-lint            PASS gl-fallback            
+  PASS empty-visual           PASS hero-fill              PASS flush                  
+  PASS placeholder            PASS sample-label           PASS caption                
+  PASS credit-wall            PASS nav                    PASS nav-covers             
+  PASS spill                  SKIP off-viewport           PASS fold-card              
+  PASS hover-spill            PASS overlap-text           SKIP collide                
+  SKIP tap-size               PASS row-gap                PASS cut-text               
+  PASS fold-cut               PASS marquee                WARN scroll-linked          
+  WARN scroll-reveal          PASS pinned                 FAIL loop-pause             
+  SKIP reduced-motion         SKIP hidden-content         PASS webgl                  
+  WARN no-visual              PASS text-only              PASS card-visual            
+  PASS hidden-visual          PASS card-family            PASS card-layout            
+  PASS nesting                PASS effect-repeat          PASS ui-fit                 
+  PASS ui-centre              PASS dark-ground            PASS button-styles          
+  PASS button-shape           PASS same-action            PASS button-picture         
+  PASS cta                    PASS pricing-tiers          PASS copy-headline          
+  PASS copy-fact              WARN copy-headings          PASS copy-buttons           
+  WARN copy-actions           PASS heading-scale          PASS stagger                
+  PASS top-stagger            PASS off-grid               PASS col-edge               
+  PASS right-edge             PASS centre-axis            PASS tilt                   
+  PASS contrast               PASS text-contrast          PASS body-size              
+  PASS busy-ground            FAIL section-gaps           PASS proximity              
+  PASS hole                   PASS links                  PASS forms                  
+  PASS photo-upscale          WARN photo-set              PASS photo-credit           
+  PASS nav-family             PASS nav-labels             PASS link-styles            
+  PASS heading-align          PASS label-centre           PASS fake-button            
+  PASS stranded-action        PASS orphan                 PASS unit-break             
+  PASS tab-wrap               PASS effects-fit            PASS fade-cut               
+  PASS photo-weight           PASS copy-length            PASS nav-current            
+  PASS progress-bar           PASS photo-repeat           PASS button-contrast        
+  PASS photo-print            PASS grounds                PASS split-align            
+  PASS fact-agree             PASS fold-action            PASS action-count           
+  PASS one-screen             PASS hover                  PASS hover-move             
+  PASS product-shown          PASS same-object            PASS font-load              
+  PASS visual-caption         PASS visual-empty           PASS effect-kind            
+  PASS hero-enter             PASS moment-none            PASS street-number          
+  FAIL postcode               PASS coordinates            PASS company-number         
+  FAIL phone-number           PASS hero-screen            FAIL section-height         
+  PASS section-air            PASS one-section            PASS one-heading            
+  FAIL container-edges        PASS row-lines              PASS split-pair             
+  PASS motion-layer           PASS count-text             PASS loop-cycle             
+  PASS section-tile           PASS empty-area             PASS a11y-name              
+  PASS img-alt                PASS field-label            PASS heading-order          
+  PASS tabindex               PASS focus-ring             PASS focus-visible          
+  PASS focus-hidden           PASS skip-link              PASS menu-toggle            
+  PASS lang                   PASS page-meta              PASS share-meta             
+  WARN action-repeat          PASS map-link               PASS open-now               
+  PASS assumed                PASS run-on                 WARN form-fields            
+  PASS form-send              
+
+total  8 FAIL  14 WARN  (crops and report.json in C:\Users\kwena\Downloads\euclidean capital\.taste-skill\report)

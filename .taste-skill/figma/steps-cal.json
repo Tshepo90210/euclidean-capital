@@ -1,0 +1,15 @@
+[
+  {"click": [1836, 1164]},
+  {"wait": 700},
+  {"key": "Escape"},
+  {"wait": 400},
+  {"key": "Shift+="},
+  {"key": "Shift+="},
+  {"key": "Shift+="},
+  {"zoomNow": true},
+  {"shot": "cal"},
+  {"wheel": [960, 600, 900]},
+  {"shot": "cal-down"},
+  {"wheel": [960, 600, 900, 8]},
+  {"shot": "cal-right"}
+]

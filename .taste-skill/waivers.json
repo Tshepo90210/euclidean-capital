@@ -1,0 +1,7 @@
+﻿[
+  {"check": "postcode", "target": "footer__address", "reason": "the client gave the registered office address in the brief and the research paper; a corporate address is not a private one and the firm must be reachable at its registered premises"},
+  {"check": "phone-number", "target": "footer__lines", "reason": "the client gave both direct lines in the brief and the research paper; they are the switchboard for institutional inquiries, not a private number"},
+  {"check": "no-visual", "target": "section#framework", "reason": "the client's Figma design (frame Desktop - 1) draws this section as four bordered cards with small line icons and no photograph; a picture here would be content the design does not have"},
+  {"check": "no-visual", "target": "section#strategies", "reason": "the client's Figma design (frame Desktop - 1) draws Our Strategies as two bordered cards with marked lists and no photograph"},
+  {"check": "no-visual", "target": "section#briefings", "reason": "the client's Figma design (frame Desktop - 1) draws the briefings as text cards on the ground, with no picture in them"}
+]

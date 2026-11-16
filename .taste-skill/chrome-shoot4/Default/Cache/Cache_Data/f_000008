@@ -1,0 +1,797 @@
+/* ============================================================================
+   EUCLIDEAN CAPITAL — the design layer
+   ---------------------------------------------------------------------------
+   Built from the client's own Figma file "EUCLIDEAN CAPITAL MID FIDELITY
+   DESIGN" (six desktop frames), pixel-checked against the design.
+
+   The palette is the brand book's own swatches:
+     Dark Navy      #12182B   the ground, the header, the footer
+     Dark Gray Blue #222C41   panels and raised surfaces
+     Gray Azure     #476B87   the 1px structural rule
+     Muted Blue     #749DCB   the one accent
+     Pure White     #FFFFFF   the editorial surface
+   Crimson #BA3D47 / #8A3D47 is deliberately absent: the client has confirmed
+   it is an error in the brand book and it must not appear on this site.
+
+   The page ground is one gradient that runs the whole page: navy at the top,
+   steel blue through the middle, navy again at the foot. The type is
+   Cormorant Garamond for the display lines, Jost for everything else.
+   ========================================================================== */
+
+:root {
+  --p-bg: #12182b;
+  --p-surface: #222c41;
+  --p-ink: #ffffff;
+  --p-muted: #aebdcd;
+  --p-accent: #749dcb;
+  --p-rule: #476b87;
+  --p-inv-bg: #ffffff;
+  --p-inv-ink: #12182b;
+
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-text: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display-tracking: -0.01em;
+
+  --line: color-mix(in oklab, #ffffff 26%, transparent);
+  --line-strong: color-mix(in oklab, #ffffff 46%, transparent);
+  --ground: linear-gradient(180deg,
+    #12182b 0%,
+    #172034 10%,
+    #26364f 20%,
+    #46628a 32%,
+    #6183ab 40%,
+    #3b5478 46%,
+    #1d2942 54%,
+    #161f33 68%,
+    #12182b 86%,
+    #12182b 100%);
+}
+
+html { background: var(--p-bg); }
+
+body {
+  background: var(--ground) fixed;
+  background-color: var(--p-bg);
+  color: var(--p-ink);
+  font-family: var(--font-text);
+}
+
+/* ---------------------------------------------------------------- the header
+   A flat navy bar: the wordmark at the left line, the words at the right
+   line, the page you are on underlined. */
+
+.nav {
+  background: var(--p-bg);
+  border-bottom: 1px solid color-mix(in oklab, var(--p-rule) 40%, transparent);
+}
+.nav__bar { gap: var(--s-6); }
+.nav__logo img { height: 34px; width: auto; }
+.nav__links { justify-content: flex-end; }
+.nav__link {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: #e8eef5;
+  padding: 0 var(--s-3);
+}
+.nav__link:hover { color: var(--p-accent); }
+.nav__link[aria-current="page"] { color: var(--p-ink); }
+.nav__link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: var(--s-3);
+  right: var(--s-3);
+  bottom: -14px;
+  height: 1px;
+  background: var(--p-accent);
+}
+.nav__actions { display: none; }
+
+/* ---------------------------------------------------------------- type */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: var(--display-tracking);
+  color: var(--p-ink);
+}
+
+.display-1 { font-size: clamp(38px, 4.2vw, 62px); line-height: 1.06; }
+.display-2 { font-size: clamp(28px, 2.6vw, 40px); line-height: 1.12; }
+.display-3 { font-size: clamp(22px, 1.7vw, 27px); line-height: 1.2; }
+
+.lede {
+  font-size: clamp(16px, 1.15vw, 19px);
+  line-height: 1.62;
+  color: #d5dee8;
+}
+
+/* the small letterspaced label the design uses over the headings */
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--p-accent);
+  margin: 0 0 var(--s-4);
+}
+.eyebrow--center { text-align: center; }
+
+/* a heading with the hairline the design draws under it */
+.section-head { display: grid; gap: var(--s-4); }
+.section-head--rule { padding-bottom: var(--s-5); position: relative; }
+.section-head--rule::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 120px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: var(--line);
+}
+.section-head--rule:not(.section-head--center)::after { left: 0; transform: none; }
+.section-head.section-head--center {
+  text-align: center;
+  justify-items: center;
+  max-width: none;
+}
+.section-head.section-head--center .section-head--rule { width: 100%; }
+.section-head p { color: inherit; }
+
+/* ---------------------------------------------------------------- buttons
+   The design has two buttons: a dark slab with an arrow and a white slab. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  height: 48px;
+  padding: 0 var(--s-6);
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font: 500 13px/1 var(--font-text);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+}
+.btn--primary { background: var(--p-bg); color: var(--p-ink); border-color: color-mix(in oklab, #ffffff 22%, transparent); }
+.btn--primary:hover { background: #0c111f; border-color: var(--p-accent); }
+.btn--light { background: #ffffff; color: var(--p-inv-ink); }
+.btn--light:hover { background: var(--p-accent); color: var(--p-inv-ink); }
+.btn .m-arrow { width: 13px; height: 13px; }
+.btn--light .m-arrow { stroke: var(--p-inv-ink); }
+
+/* ---------------------------------------------------------------- cards
+   The design's card: a 1px light rule, no fill, generous padding. */
+
+.card {
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, #ffffff 3%, transparent);
+  border-radius: 2px;
+  padding: var(--s-6);
+  display: grid;
+  gap: var(--s-4);
+  align-content: start;
+  min-height: 300px;
+}
+.card__mark { width: 32px; height: 32px; }
+.card__mark { width: 26px; height: 26px; color: var(--p-accent); }
+.card__mark svg { width: 100%; height: 100%; display: block; }
+.card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.22;
+  letter-spacing: var(--display-tracking);
+  color: var(--p-ink);
+}
+.card p { margin: 0; font-size: 15px; line-height: 1.62; color: #cfd9e4; }
+
+/* the design's small outlined tag */
+.tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--p-accent);
+}
+
+/* ---------------------------------------------------------------- the grid of cards */
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+.card-row.fill, .briefings.fill { align-items: stretch; }
+.card-row--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.card-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* ---------------------------------------------------------------- the hero
+   The firm's own photograph, full bleed, the statement over it in the
+   middle of the frame and the two calls to action under it. */
+
+.hero--ec {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero--ec .hero__bg,
+.band > picture.layer { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; }
+.hero--ec .hero__bg > img,
+.band > picture.layer > img,
+.band > picture.layer > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero--ec > .wrap { position: relative; z-index: 1; height: auto; flex: 0 1 auto; }
+.hero--ec { justify-content: center; padding-top: var(--nav); }
+.hero--ec .hero__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-6);
+  text-align: center;
+  max-width: 880px;
+  margin-inline: auto;
+}
+.hero--ec .hero__statement {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(26px, 2.3vw, 33px);
+  line-height: 1.42;
+  font-weight: 400;
+  color: #ffffff;
+  text-wrap: balance;
+}
+.hero--ec .hero__statement strong { font-weight: 500; letter-spacing: .04em; }
+.hero--ec .btn-row { justify-content: center; }
+.hero--ec .hero__where {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #dfe7f0;
+}
+
+/* the picture band: the firm's earth, full bleed, a heading over it */
+.band {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: 62svh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.band > .wrap { position: relative; z-index: 1; padding-bottom: var(--s-7); }
+.band__title {
+  margin: 0;
+  max-width: 26ch;
+  margin-inline: auto;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(26px, 2.7vw, 42px);
+  line-height: 1.12;
+  letter-spacing: var(--display-tracking);
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------------- the footer
+   The design's footer: the firm on the left, the lines and the address on
+   the right, the regulatory links on a rule, the copyright on the last rule. */
+
+.footer {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--p-bg);
+  color: var(--p-muted);
+  border-top: 1px solid color-mix(in oklab, var(--p-rule) 40%, transparent);
+  padding-block: var(--s-7) var(--s-6);
+}
+.footer .closing__cta { display: none; }
+.footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--s-6) var(--s-8);
+  align-items: start;
+}
+.footer__firm {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--p-ink);
+  margin: 0 0 var(--s-2);
+}
+.footer__address { font-style: normal; font-size: 14px; line-height: 1.7; color: var(--p-muted); margin: 0; }
+.footer__label { font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--p-ink); margin: 0 0 var(--s-2); }
+.footer__lines { font-style: normal; font-size: 14px; line-height: 1.7; margin: 0; }
+.footer__lines a, .footer__address a { color: var(--p-muted); text-decoration: underline; text-underline-offset: 3px; }
+.footer__lines a:hover, .footer__address a:hover { color: var(--p-accent); }
+.footer__lines a, .footer__address a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.footer__links a { color: var(--p-muted); text-decoration: none; }
+.footer__links a:hover { color: var(--p-accent); }
+.footer__legal {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  font-size: 12px;
+  color: var(--p-muted);
+}
+.footer__legal a { color: var(--p-muted); text-decoration: none; }
+.footer__legal a:hover { color: var(--p-accent); }
+
+/* ---------------------------------------------------------------- the dictionary card
+   The About page's card, as the design draws it. */
+
+.dictionary {
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: var(--s-6);
+  display: grid;
+  gap: var(--s-4);
+  background: color-mix(in oklab, #ffffff 3%, transparent);
+}
+.dictionary__word {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 30px;
+  letter-spacing: var(--display-tracking);
+  color: var(--p-ink);
+}
+.dictionary__pos { margin: 0; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--p-accent); }
+.dictionary__quote {
+  margin: 0;
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #dbe4ee;
+}
+.dictionary__quote strong { font-weight: 500; color: var(--p-ink); }
+.dictionary__foot {
+  margin: 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--p-muted);
+}
+
+/* ---------------------------------------------------------------- the inquiry form
+   The design's dark panel with white fields. */
+
+.inquiry {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: color-mix(in oklab, #0d1424 55%, transparent);
+  padding: var(--s-6);
+  display: grid;
+  gap: var(--s-5);
+}
+.inquiry h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--p-ink);
+}
+.inquiry .form { display: grid; gap: var(--s-4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.inquiry .field { display: block; }
+.inquiry .field--wide { grid-column: 1 / -1; }
+.inquiry label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--p-muted);
+  margin-bottom: var(--s-2);
+}
+.inquiry input,
+.inquiry select,
+.inquiry textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: var(--s-3) var(--s-4);
+  font: 400 15px/1.4 var(--font-text);
+  color: var(--p-inv-ink);
+  background: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+.inquiry textarea { min-height: 96px; resize: vertical; }
+.inquiry input:focus-visible,
+.inquiry select:focus-visible,
+.inquiry textarea:focus-visible { outline: 2px solid var(--p-accent); outline-offset: 2px; }
+.inquiry .consent {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: var(--s-3);
+  align-items: start;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--p-muted);
+}
+.inquiry .consent input { width: 18px; height: 18px; min-height: 0; accent-color: var(--p-accent); }
+.inquiry .consent label { margin: 0; text-transform: none; letter-spacing: 0; font-size: 12px; font-weight: 400; }
+.inquiry .field__error { font-size: 12px; color: #ffb3b3; margin: var(--s-2) 0 0; }
+.inquiry .btn-row { grid-column: 1 / -1; }
+.inquiry .btn-row .btn { width: 100%; }
+.inquiry .form__status { grid-column: 1 / -1; margin: 0; font-size: 13px; color: var(--p-accent); }
+
+/* ---------------------------------------------------------------- the questions
+   The design's white rows, each a number, a question and a label. */
+
+.questions { display: grid; gap: var(--s-3); }
+.question {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto 24px;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--p-inv-ink);
+  border: 0;
+  width: 100%;
+  text-align: left;
+  font: 500 15px/1.35 var(--font-text);
+  cursor: pointer;
+}
+.question__n { font-size: 12px; color: #7c8798; }
+.question__label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #7c8798; white-space: nowrap; }
+.question:hover { background: #e8eef6; }
+.question__chev { color: #7c8798; }
+
+/* ---------------------------------------------------------------- the report page
+   The design's paper panel. */
+
+.report {
+  border: 1px solid var(--line-strong);
+  background: color-mix(in oklab, #ffffff 4%, transparent);
+  padding: var(--s-7);
+  display: grid;
+  gap: var(--s-5);
+}
+.report__strip {
+  border: 1px solid var(--line);
+  padding: var(--s-2) var(--s-4);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--p-muted);
+}
+.report__meta {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: var(--s-4);
+  align-items: center;
+  border: 1px solid var(--line);
+  padding: var(--s-3) var(--s-4);
+}
+.report__meta img { width: 64px; height: 64px; object-fit: cover; border-radius: 3px; }
+.report__meta p { margin: 0; font-size: 14px; color: var(--p-muted); }
+.report__meta strong { display: block; font-weight: 500; color: var(--p-ink); font-size: 16px; }
+.report p { margin: 0; font-size: 15px; line-height: 1.65; color: #cfd9e4; }
+.report h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--p-ink);
+}
+.report__pull {
+  margin: 0;
+  padding: var(--s-5) var(--s-6);
+  border-left: 2px solid var(--p-accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: #e4ebf3;
+}
+.report__pull cite { display: block; margin-top: var(--s-3); font: 400 13px/1.4 var(--font-text); font-style: normal; color: var(--p-muted); }
+.report table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.report th, .report td { text-align: left; padding: var(--s-3) var(--s-3); border-bottom: 1px solid var(--line); color: #cfd9e4; }
+.report th { font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--p-ink); font-size: 11px; }
+.report__notice {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: var(--s-4) var(--s-5);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--p-muted);
+}
+.report__notice strong { display: block; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--p-ink); margin-bottom: var(--s-2); font-size: 12px; }
+
+/* ---------------------------------------------------------------- the team
+   The design's portraits in rounded frames. */
+
+.team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
+.team figure { margin: 0; display: grid; gap: var(--s-3); }
+.team img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 6px; }
+.team h3 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 22px; color: var(--p-ink); }
+.team .role { margin: 0; font-size: 13px; color: var(--p-muted); }
+
+/* the lineage: four small framed cells */
+.lineage { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-4); }
+.lineage > div {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: var(--s-3);
+  align-items: center;
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.lineage svg { width: 30px; height: 30px; color: var(--p-accent); }
+.lineage .name { display: block; font-size: 14px; font-weight: 500; color: var(--p-ink); }
+.lineage .role { display: block; font-size: 12px; color: var(--p-muted); }
+
+/* ---------------------------------------------------------------- the briefings
+   The design's research cards. */
+
+.briefings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); }
+.briefings > article {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding: var(--s-5);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: color-mix(in oklab, #ffffff 3%, transparent);
+}
+.briefings .meta { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+.briefings .cat { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--p-accent); margin: 0; }
+.briefings .date { font-size: 12px; color: var(--p-muted); margin: 0; }
+.briefings h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 1.22;
+  color: var(--p-ink);
+}
+.briefings .excerpt { margin: 0; font-size: 14px; line-height: 1.6; color: #c3cfdc; }
+.briefings .foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--p-muted);
+}
+.briefings .foot a {
+  color: #d7e3f0;
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.briefings .foot a:hover { color: var(--p-ink); }
+
+/* ---------------------------------------------------------------- the two arenas
+   The design's strategy columns. */
+
+.arena { display: grid; gap: var(--s-5); }
+.arena h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--p-ink);
+}
+.arena p { margin: 0; font-size: 15px; line-height: 1.62; color: #cfd9e4; }
+.arena ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4) var(--s-5); }
+.arena li { font-size: 13px; letter-spacing: .04em; line-height: 1.5; color: var(--p-muted); text-transform: uppercase; }
+.arena li strong { display: block; font-weight: 500; color: var(--p-ink); letter-spacing: .06em; }
+.arena .rules { display: grid; gap: var(--s-3); padding-top: var(--s-4); border-top: 1px solid var(--line); font-size: 13px; color: var(--p-muted); }
+
+/* ---------------------------------------------------------------- the business card
+   The design's white card, the firm's own details on it. */
+
+.bizcard {
+  background: #ffffff;
+  color: var(--p-inv-ink);
+  border-radius: 10px;
+  padding: var(--s-6);
+  display: grid;
+  gap: var(--s-4);
+  max-width: 460px;
+}
+.bizcard__top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-4); }
+.bizcard__name { margin: 0; font-family: var(--font-display); font-size: 26px; color: var(--p-inv-ink); }
+.bizcard__mark { width: 44px; height: 44px; background: var(--p-bg); border-radius: 3px; color: #fff; display: grid; place-items: center; }
+.bizcard__mark svg { width: 26px; height: 26px; }
+.bizcard dl { display: grid; gap: var(--s-3); margin: 0; }
+.bizcard dt { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #6c7789; }
+.bizcard dd { margin: 0; font-size: 14px; line-height: 1.55; color: #26304a; }
+.bizcard a { color: #26304a; }
+
+
+/* ---------------------------------------------------------------- the lists
+   The design's marked lists inside a card, and the convergence paragraphs. */
+
+.bullets { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s-3); }
+.bullets li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: var(--s-3);
+  font-size: 14px;
+  line-height: 1.55;
+  color: #cfd9e4;
+}
+.bullets li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border: 1px solid var(--p-accent);
+  border-radius: 50%;
+}
+.bullets strong { font-weight: 500; color: var(--p-ink); }
+
+.convergence {
+  display: grid;
+  gap: var(--s-5);
+  max-width: 920px;
+  margin-inline: auto;
+  margin-top: var(--s-6);
+  text-align: center;
+}
+.convergence p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #e4ebf3;
+}
+
+.band--tall { min-height: 80svh; }
+.band--tall .band__bg { object-position: center 42%; }
+.band--film { min-height: 74svh; }
+
+.foot-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  font-size: 12px;
+  color: var(--p-muted);
+}
+.foot-links a { color: var(--p-accent); text-decoration: none; display: inline-flex; align-items: center; gap: var(--s-2); }
+.foot-links a:hover { color: var(--p-ink); }
+
+.takeaways { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s-3); }
+.takeaways li {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: var(--s-4);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cfd9e4;
+}
+.takeaways strong {
+  display: block;
+  font-weight: 500;
+  color: var(--p-ink);
+  margin-bottom: var(--s-2);
+}
+.table-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--p-muted); }
+.report__desk { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
+.report__desk-name { margin: 0; font-family: var(--font-display); font-size: 26px; color: var(--p-ink); }
+.report__desk-line { margin: 0; font-size: 13px; color: var(--p-muted); }
+
+/* ---------------------------------------------------------------- the helpers */
+
+.rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* the content of a section stands in the middle of its screen, so the air
+   between two sections is the same everywhere on the page */
+main > section.section > .wrap,
+main > section.band > .wrap { justify-content: center; }
+.center { text-align: center; }
+.mt-7 { margin-top: var(--s-7); }
+.mt-6 { margin-top: var(--s-6); }
+.mt-5 { margin-top: var(--s-5); }
+.mb-6 { margin-bottom: var(--s-6); }
+
+/* ---------------------------------------------------------------- narrower
+   The cards stack, the grid becomes one column, the ground keeps its
+   gradient. */
+
+@media (max-width: 1279px) {
+  /* a block that fills its screen only where there is a screen to fill: on a
+     tablet and a phone the sections grow with their content, so a filled block
+     would collapse and its content would run over the next section */
+  main > :is(section, .section) > .wrap > .fill,
+  main > :is(section, .section) > .container > .fill,
+  .group > .fill { flex: 0 0 auto; min-height: 0; }
+}
+
+@media (max-width: 1023px) {
+  .card-row, .card-row--3, .card-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .briefings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lineage { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer__top { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 639px) {
+  .nav__logo img { height: 26px; }
+  .card-row, .card-row--3, .card-row--2, .briefings, .team, .lineage { grid-template-columns: 1fr; }
+  .inquiry { border-radius: 12px; padding: var(--s-5); }
+  .inquiry .form { grid-template-columns: 1fr; }
+  .question { grid-template-columns: 30px minmax(0, 1fr) 20px; border-radius: 10px; }
+  .question__label { display: none; }
+  .footer__top { grid-template-columns: 1fr; }
+  .footer__legal { flex-direction: column; }
+  .arena ul { grid-template-columns: 1fr; }
+  .report { padding: var(--s-5); }
+  .report__meta { grid-template-columns: 48px minmax(0, 1fr); }
+  .report__meta img { width: 48px; height: 48px; }
+  .hero--ec { min-height: 92svh; }
+}
+
+
+@media (max-width: 639px) {
+  .hero--ec .hero__bg { top: var(--nav); }
+  /* a phone: every section grows with its own content and holds at least a
+     screen, so nothing runs over the section that follows it */
+  main > section.section,
+  main > section.band {
+    height: auto;
+    min-height: calc(var(--hm, var(--h, 1)) * 100lvh);
+  }
+  main > section.section > .wrap,
+  main > section.band > .wrap { height: auto; }
+  main > section.section > .wrap { justify-content: flex-start; }
+  .hero--ec { min-height: 100svh; }
+}
+
+/* ---------------------------------------------------------------- reduced motion
+   The kit's motion layer reads prefers-reduced-motion itself. */

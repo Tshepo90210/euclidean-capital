@@ -1,0 +1,12 @@
+[
+  {"click": [1836, 1164]},
+  {"wait": 700},
+  {"key": "Escape"},
+  {"wait": 700},
+  {"click": [55, 246]},
+  {"wait": 900},
+  {"url": true},
+  {"zoomAt": [170, 300, 4]},
+  {"zoomNow": true},
+  {"shot": "d1-test"}
+]

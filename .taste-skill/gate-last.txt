@@ -1,0 +1,49 @@
+﻿gate: checking index.html (service); this takes a few minutes on a CPU Chrome
+gate: 13 FAIL open
+  FAIL no-visual        section#pedigree "Institutional Track Record Built at Glob"  [1440, 390]
+       no picture, effect or mock in this section; a feature section needs a visual
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL copy-fact        h1#hero-h "Dispassionate, style-agnostic active inv"  [1440]
+       the first screen holds no number, price, date, place, platform or genre
+       fix: put one hard fact from the brief on the first screen: a number, a price, a date, the place, the platforms it runs on or a game's genre; take it from the brief or remove the claim
+  FAIL heading-scale    h2#framework-h "The Symbiotic Fiduciary Framework"  [1440, 390]
+       an h2 at 37.4px, as large as the h1 (33px) or larger (and 2 more like it: "Our Strategies", "Euclidean Perspectives ┬╖")
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL contrast         div.wrap > div.card-row.card-row--2 > article.card:nth-of-type(1) > p "Bi-directional long  [1440, 390]
+       body text over a effect reads at 4.0:1 at its worst tenth (needs 4.5:1) (and 7 more like it: "Systematic factor neutra", "Forensic accounting scre", "Dynamic cash buffering. ", "Strategic deployment int", ...)
+       fix: put the text on a calm part of the picture, or on a solid panel
+  FAIL empty-area       footer#contact "EUCLIDEAN CAPITAL (PTY) LTD First Floor,"  [1440]
+       58% of the section is empty: 416px of empty rows between its content, in its 720px of rows (WARN over 35%, FAIL over 50%)
+       fix: fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)
+  FAIL section-height   main#top > section.band "Euclidean Perspectives ┬╖ Geoeconomic Com"  [1440]
+       the section's content does not fit it: its lowest content ends 900px below its top, past 828px (the section less 72px of bottom padding) (SR-2)
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-air      section#briefings "Geoeconomics 20 Oct 2026 Global Trade Fr"  [1440]
+       the content fills 27.4% of the section's height (247 of 900px): 55% or more (40% WARN) (SR-3)
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  FAIL container-edges  video#earth-film "The earth at night, seen from space"  [1440]
+       a child of section 4 beside its .wrap is no valid background layer: not aria-hidden="true" (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges  footer#contact > div.wrap "Euclidean Capital (Pty) Ltd First Floor,"  [1440]
+       footer.closing > .wrap holds 3 children: exactly two (the call, then the legal row) (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges  h2#framework-h "The Symbiotic Fiduciary Framework"  [1440]
+       1 text block starts on a left line at x 458, 378px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (SR-6)
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL collide          header.nav "Skip to content"  [390, 320]
+       at the top of the page the fixed bar covers the picture "img: A network of linked spheres": nothing scrolls it out from under the bar
+       fix: on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons;
+  FAIL section-gaps     section#strategies / main#top > section.band  [390]
+       359px between these sections, +68% against the median 214px
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL sparse           #briefings section.section "Geoeconomics 20 Oct 2026 Global "  [1440]
+       its content fills 32% of its screen; merge it or give it its visual (0.55 is the aim)
+       fix: fill the section or make it a screen shorter
+  WAIVED no-visual section#framework "The Symbiotic Fiduciary Framework": the client's Figma design (frame Desktop - 1) draws this section as four bordered cards with small line icons and no photograph; a picture here would be content the design does not have
+  WAIVED no-visual section#strategies "Our Strategies": the client's Figma design (frame Desktop - 1) draws Our Strategies as two bordered cards with marked lists and no photograph
+  WAIVED no-visual section#briefings "Global Trade Fragmentation and South Afr": the client's Figma design (frame Desktop - 1) draws the briefings as text cards on the ground, with no picture in them
+  WAIVED postcode div.wrap > div.footer__top > div:nth-of-type(1) > address.footer__address "145 S: the client gave the registered office address in the brief and the research paper; a corporate address is not a private one and the firm must be reachable at its registered premises
+  WAIVED phone-number div.wrap > div.footer__top > div:nth-of-type(2) > address.footer__lines "+27 64 : the client gave both direct lines in the brief and the research paper; they are the switchboard for institutional inquiries, not a private number
+  25 WARN (not blocking), first: nav div.wrap.nav__bar > nav.nav__links > div; copy-headline h1#hero-h "Dispassionate, style-agnostic; copy-headings div.wrap > div.briefings.fill > article:; copy-buttons div.wrap > div.hero-text.hero__inner > d; copy-actions div.card-row.card-row--2 > article.card:
+A FAIL you judge false: add {"check": "<id>", "target": "<its where, enough to name that one finding>", "reason": "<why, 12+ characters>"} to .taste-skill/waivers.json (one finding each, 5 at most, never for kit-edited or checker-gaming); it goes in your report. Never edit the kit's files or hide the page from the checker.
+GATE: FAIL 13 (round 1 of 3)

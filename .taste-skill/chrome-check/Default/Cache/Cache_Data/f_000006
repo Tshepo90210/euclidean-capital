@@ -1,0 +1,484 @@
+/* ============================================================================
+   EUCLIDEAN CAPITAL — brand layer
+   ---------------------------------------------------------------------------
+   Palette sampled from the client's own Brand Identity book:
+     Dark Navy      #12182B   primary ground
+     Dark Gray Blue #222C41   elevated surfaces
+     Gray Azure     #476B87   1px structural rules
+     Muted Blue     #749DCB   the one accent
+     Pure White     #FFFFFF   editorial surfaces
+   Crimson #BA3D47 / #8A3D47 is deliberately absent: the client has confirmed
+   it is an error in the brand book and it must not appear on this site.
+   Type: Cormorant Garamond (display) + Jost (text).
+   ========================================================================== */
+
+:root {
+  /* the palette, as start.mjs prints it */
+  --p-bg: #12182b;         /* Dark Navy      */
+  --p-surface: #222c41;     /* Dark Gray Blue */
+  --p-ink: #ffffff;         /* Pure White     */
+  --p-muted: #9fb3c8;       /* 8.19:1 on Dark Navy */
+  --p-accent: #749dcb;      /* Muted Blue     */
+  --p-accent-ink: #12182b;
+  --p-action: #749dcb;
+  --p-action-ink: #12182b;
+
+  --p-inv-bg: #ffffff;      /* Pure White     */
+  --p-inv-surface: #eef1f5;
+  --p-inv-ink: #12182b;     /* Dark Navy      */
+  --p-inv-muted: #556377;   /* 6.11:1 on White */
+  --p-inv-accent: #12182b;
+  --p-inv-accent-ink: #ffffff;
+  --p-inv-action: #12182b;
+  --p-inv-action-ink: #ffffff;
+
+  /* the type */
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-text: "Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.012em;
+  --display-tracking-xl: -0.018em;
+  --ly-scale: 1.06;
+
+  /* the structural rule: Gray Azure */
+  --p-rule: #476b87;
+  --line: color-mix(in oklab, var(--p-rule) 26%, transparent);
+  --line-strong: color-mix(in oklab, var(--p-rule) 62%, transparent);
+}
+
+/* the grounds that are not the base one take the same rule colour, and a lighter
+   grey for the running text: on Dark Gray Blue the muted grey has to clear 7:1 */
+.ground-surface {
+  --line: color-mix(in oklab, var(--p-rule) 30%, transparent);
+  --line-strong: color-mix(in oklab, var(--p-rule) 66%, transparent);
+  --muted: #b4c4d4;
+}
+.ground-inverse { --line: color-mix(in oklab, var(--p-rule) 34%, transparent); --line-strong: color-mix(in oklab, var(--p-rule) 72%, transparent); }
+
+/* ---------------------------------------------------------------- the hero
+   A full-bleed film behind the split: the copy on a solid navy panel, the
+   dictionary card on a solid Dark Gray Blue panel. Both panels are opaque,
+   so the type never depends on what the footage is doing in a given frame. */
+
+.hero--ec { background: var(--p-bg); overflow: clip; isolation: isolate; }
+.hero--ec > .wrap { position: relative; z-index: 2; }
+.hero--ec .hero__row { align-items: center; row-gap: var(--s-6); }
+.hero--ec .hero__text { width: auto; }
+.hero--ec .hero__lead { max-width: 52ch; }
+
+.hero__panel {
+  background: var(--p-bg);
+  color: var(--p-ink);
+  --ink: var(--p-ink); --muted: var(--p-muted);
+  --line: color-mix(in oklab, var(--p-ink) 11%, transparent);
+  --line-strong: color-mix(in oklab, var(--p-ink) 22%, transparent);
+  --accent: var(--p-accent); --action: var(--p-action); --action-ink: var(--p-action-ink);
+  padding: var(--s-7);
+}
+.hero--ec .hero__kicker { color: var(--p-accent); }
+
+.hero__dict {
+  background: var(--p-surface);
+  border: 1px solid color-mix(in oklab, var(--p-accent) 38%, transparent);
+  padding: var(--s-7);
+  align-self: center;
+  display: grid;
+  gap: var(--s-4);
+}
+.hero__dict .cat {
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--p-accent);
+  margin: 0;
+}
+.hero__dict .title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: var(--display-tracking);
+  color: var(--p-ink);
+  margin: 0;
+}
+.hero__dict .phon { font-size: var(--t-small); color: var(--p-accent); margin: 0; }
+.hero__dict .definition { font-size: var(--t-body); line-height: 1.6; color: var(--p-ink); margin: 0; }
+.hero__dict .axiom {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--p-accent);
+  margin: 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+.hero__dict .origin { font-size: var(--t-small); line-height: 1.5; color: #b4c4d4; margin: 0; }
+
+/* the film's own control: the page's secondary button, on the film, inside the
+   container's lines */
+.ec-film__play {
+  position: absolute; z-index: 3;
+  right: 0; bottom: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  border-radius: var(--r-btn);
+  background: var(--p-bg);
+  border: 1px solid var(--line-strong);
+  color: var(--p-ink);
+  cursor: pointer;
+}
+.ec-film__play:hover { background: var(--p-action); color: var(--p-action-ink); border-color: var(--p-action); }
+.ec-film__play:focus-visible { outline: 2px solid var(--p-accent); outline-offset: 3px; }
+.ec-film__play svg { width: 14px; height: 14px; fill: currentColor; }
+.ec-film__play .icon-pause { display: none; }
+.ec-film__play.is-playing .icon-play { display: none; }
+.ec-film__play.is-playing .icon-pause { display: block; }
+
+/* the one secondary button: an outlined one on every ground, in the accent, so
+   the page never shows two button looks */
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--p-accent);
+}
+.btn--secondary:hover {
+  background: color-mix(in oklab, var(--p-accent) 18%, transparent);
+  border-color: var(--p-accent);
+}
+
+/* ---------------------------------------------------------------- the eyebrow
+   A quiet label above a section's heading. */
+
+.eyebrow {
+  display: block;
+  font-size: var(--t-label);
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--p-accent);
+  margin: 0 0 var(--s-4);
+}
+.ground-inverse .eyebrow { color: #476b87; }
+
+/* ---------------------------------------------------------------- the facts line
+   The three hard facts, as one line under the calls to action. */
+
+.hero__facts-line {
+  font-size: var(--t-small);
+  line-height: 1.55;
+  color: var(--p-muted);
+  margin: 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------- the cards
+   One card recipe on the page: a hairline, the brand's radius, the display
+   face for the title. */
+
+.card { --card-pad: var(--s-6); }
+.card > h3,
+.card > .card__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: var(--display-tracking);
+  color: var(--p-ink);
+}
+.ground-inverse .card > h3,
+.ground-inverse .card > .card__title { color: var(--p-inv-ink); }
+
+/* the mark a card carries: a real line icon, one weight, one size */
+.card__mark {
+  width: 24px; height: 24px;
+  color: var(--p-accent);
+}
+.ground-inverse .card__mark { color: #476b87; }
+.card__mark svg { width: 100%; height: 100%; display: block; }
+
+/* ---------------------------------------------------------------- the pillars
+   The four pillars of the framework, as one ruled row. */
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
+  margin-top: var(--s-7);
+}
+.pillars > .card { gap: var(--s-3); align-content: start; }
+.pillars .num {
+  font-family: var(--font-display);
+  font-size: 26px; line-height: 1;
+  color: #476b87;
+  margin: 0;
+}
+.pillars .card p { margin: 0; font-size: var(--t-body); line-height: 1.6; color: var(--p-inv-ink); }
+
+/* ---------------------------------------------------------------- the lineage
+   Where the partners came from: one panel, four cells, names in the display
+   face, no raster logos. */
+
+.lineage {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line-strong);
+}
+.lineage > div {
+  padding: var(--s-5) var(--s-4);
+  min-height: 104px;
+  display: grid;
+  align-content: center;
+  gap: var(--s-1);
+  border-right: 1px solid var(--line);
+}
+.lineage > div:last-child { border-right: 0; }
+.lineage .name {
+  font-family: var(--font-display);
+  font-size: 21px; line-height: 1.25;
+  letter-spacing: var(--display-tracking);
+  color: var(--p-ink);
+}
+.lineage .role { font-size: var(--t-small); color: var(--p-muted); }
+
+/* ---------------------------------------------------------------- people */
+
+.people { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
+.people > .card { gap: var(--s-3); padding: var(--s-4); align-content: start; }
+.people img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 1 / 1; object-fit: cover; object-position: center top;
+  border-radius: var(--r-sm); background: var(--p-surface);
+}
+.people .role { font-size: var(--t-small); color: var(--p-accent); margin: 0; }
+.people p { margin: 0; font-size: var(--t-body); line-height: 1.6; color: var(--p-ink); }
+
+/* ---------------------------------------------------------------- the arenas
+   The two capital deployment arenas. */
+
+.arenas { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-6); margin-top: var(--s-7); }
+.arenas > .card { gap: var(--s-4); align-content: start; }
+.arenas p { margin: 0; font-size: var(--t-body); line-height: 1.6; color: var(--p-inv-ink); }
+.arenas .offerings { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s-3); }
+.arenas .offerings li {
+  display: grid; grid-template-columns: 16px 1fr; gap: var(--s-3); align-items: start;
+  font-size: var(--t-body); line-height: 1.55; color: var(--p-inv-ink);
+}
+.arenas .offerings li::before {
+  content: ""; width: 9px; height: 9px; margin-top: 8px;
+  border: 1px solid #476b87;
+}
+.arenas .offerings strong { font-weight: 500; }
+.arenas .btn-row { margin-top: var(--s-2); }
+
+/* ---------------------------------------------------------------- the briefings
+   The weekly research feed as ruled rows. */
+
+.briefings { margin-top: var(--s-7); }
+.briefings > article {
+  display: grid;
+  grid-template-columns: 56px 190px 1fr;
+  gap: var(--s-3) var(--s-6);
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--line);
+  align-content: start;
+}
+.briefings .mark { color: #476b87; }
+.briefings .mark svg { width: 22px; height: 22px; display: block; }
+.briefings .meta { display: grid; gap: var(--s-1); align-content: start; }
+.briefings .cat { font-size: var(--t-label); font-weight: 500; color: #476b87; margin: 0; }
+.briefings .date { font-size: var(--t-small); color: var(--p-inv-muted); margin: 0; }
+.briefings h3 {
+  margin: 0; font-family: var(--font-display); font-weight: 500;
+  font-size: 24px; line-height: 1.25; letter-spacing: var(--display-tracking);
+  color: var(--p-inv-ink);
+}
+.briefings .excerpt { margin: var(--s-2) 0 0; font-size: var(--t-body); line-height: 1.6; color: var(--p-inv-ink); max-width: 60ch; }
+.briefings .by { margin: var(--s-2) 0 0; font-size: var(--t-small); color: var(--p-inv-muted); }
+
+/* ---------------------------------------------------------------- the filters
+   The research hub's category filter: a row of quiet words across the
+   container's lines. */
+
+.filters { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3) var(--s-5); margin-bottom: var(--s-6); }
+.filters button {
+  background: none;
+  border: 0;
+  padding: var(--s-2) 0;
+  font: 400 var(--t-small)/1.4 var(--font-text);
+  color: var(--p-inv-muted);
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+.filters button:hover { color: var(--p-inv-ink); }
+.filters button[aria-pressed="true"] { color: var(--p-inv-ink); border-bottom-color: var(--p-inv-accent); }
+.filters button:focus-visible { outline: 2px solid var(--p-inv-accent); outline-offset: 3px; }
+
+/* ---------------------------------------------------------------- the statement
+   The moment's own section: the statement stands in the middle of its screen,
+   and its box runs to the foot of it, so the air between the sections is the
+   same everywhere on the page. */
+
+[data-moment="word-highlight"] > .wrap { justify-content: stretch; }
+[data-moment="word-highlight"] .mo-wh__text { display: flex; align-items: center; }
+
+/* ---------------------------------------------------------------- the fill
+   A block that runs to the foot of its screen. The air between two sections is
+   then the same everywhere on the page. The cards grow into it; a picture
+   keeps its shape and the air sits below it. */
+
+.grid.fill { align-content: start; }
+.pillars.fill, .arenas.fill, .people.fill, .lineage.fill { align-content: stretch; }
+.briefings.fill { align-content: stretch; }
+
+/* ---------------------------------------------------------------- a research card
+   The briefing cards: a mark, the category and the date, the headline, the
+   excerpt and the byline. */
+
+.card .cat { font-size: var(--t-label); font-weight: 500; color: #476b87; margin: 0; }
+.card .date { font-size: var(--t-small); color: var(--p-inv-muted); margin: 0; }
+.card .excerpt { margin: var(--s-2) 0 0; font-size: var(--t-body); line-height: 1.6; color: var(--p-inv-ink); }
+.card .by { margin: var(--s-2) 0 0; font-size: var(--t-small); color: var(--p-inv-muted); }
+.insights-grid { align-items: stretch; }
+.insights-grid > .card { gap: var(--s-3); align-content: start; }
+
+/* the mark a disclosure carries, inside its own heading */
+.faq__mark { width: 24px; height: 24px; vertical-align: -0.22em; margin-right: var(--s-2); color: #476b87; }
+
+/* ---------------------------------------------------------------- a picture
+   The client's own photography, in the brand's flat frame. */
+
+.shot {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.shot img { display: block; width: 100%; height: auto; }
+.ground-inverse .shot { border-color: var(--line); background: var(--p-inv-surface); }
+/* the wide band: a picture across the container's lines, cut to a band */
+.shot--band { aspect-ratio: 1280 / 450; }
+.shot--band img { width: 100%; height: 100%; object-fit: cover; }
+
+/* one grade over every picture on the page, so they read as one set */
+.shot img,
+.people img,
+.mo-pc__visual img { filter: saturate(.92) contrast(1.02) brightness(.99); }
+
+/* ---------------------------------------------------------------- the gate
+   The inquiry card: a solid Dark Gray Blue panel, inputs on a 1px Gray Azure
+   rule, the POPIA consent in its own outlined container. */
+
+.gate-panel {
+  background: var(--p-surface);
+  border: 1px solid color-mix(in oklab, var(--p-accent) 36%, transparent);
+  border-radius: var(--r-lg);
+  padding: var(--s-6);
+  display: flex;
+  flex-direction: column;
+}
+.gate-panel .form { flex: 1 1 auto; align-content: space-between; }
+.gate-panel .form { display: grid; gap: var(--s-4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* the field is a block, not a grid: a label, an input and a hidden error line are
+   one field, not a row of three */
+.gate-panel .field { display: block; }
+.gate-panel .field > label { display: block; margin-bottom: var(--s-2); }
+.gate-panel .field__error { margin-top: var(--s-2); }
+.gate-panel .field--wide { grid-column: 1 / -1; }
+.gate-panel .btn-row,
+.gate-panel .form__status { grid-column: 1 / -1; }
+.gate-panel label { font-size: var(--t-small); font-weight: 500; color: var(--p-ink); }
+.gate-panel input,
+.gate-panel select,
+.gate-panel textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: var(--s-3) var(--s-4);
+  font: 400 var(--t-body)/1.4 var(--font-text);
+  color: var(--p-ink);
+  background: var(--p-bg);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+}
+.gate-panel textarea { min-height: 88px; resize: vertical; }
+.gate-panel input:focus-visible,
+.gate-panel select:focus-visible,
+.gate-panel textarea:focus-visible {
+  outline: 2px solid var(--p-accent);
+  outline-offset: 1px;
+  border-color: var(--p-accent);
+}
+.gate-panel .consent {
+  display: grid; grid-template-columns: 22px 1fr; gap: var(--s-3); align-items: start;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  padding: var(--s-4);
+  font-size: var(--t-small); line-height: 1.5; color: var(--p-muted);
+}
+.gate-panel .consent input { width: 20px; height: 20px; min-height: 0; margin: 0; accent-color: var(--p-accent); }
+.gate-panel .consent label { font-weight: 400; color: var(--p-muted); }
+.gate-panel .field__error { font-size: var(--t-small); color: var(--p-accent); margin: 0; }
+.gate-panel .form__status { font-size: var(--t-small); color: var(--p-accent); margin: 0; }
+.gate-panel .form__status:empty { display: none; }
+.gate-panel .btn-row { margin-top: var(--s-2); }
+
+/* ---------------------------------------------------------------- the offices */
+
+.offices { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-5); }
+.offices address { font-style: normal; font-size: var(--t-body); line-height: 1.6; color: var(--p-ink); }
+.offices address a { color: var(--p-ink); }
+.offices .label { font-size: var(--t-label); font-weight: 500; color: var(--p-accent); margin: 0 0 var(--s-2); }
+.offices .shot { margin-top: var(--s-6); }
+
+/* ---------------------------------------------------------------- the footer */
+
+.footer__legal { flex-direction: column; align-items: flex-start; gap: var(--s-3); }
+.footer__legal a { color: var(--p-muted); }
+.footer__legal a:hover { color: var(--p-accent); }
+.compliance { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-6); font-size: var(--t-small); }
+.compliance a { color: var(--p-muted); text-decoration: none; }
+.compliance a:hover { color: var(--p-accent); text-decoration: underline; }
+.credits { font-size: var(--t-small); color: var(--p-muted); margin: var(--s-4) 0 0; }
+.nav__logo img { height: 26px; width: auto; }
+.footer .nav__logo img { height: 30px; width: auto; }
+
+/* ---------------------------------------------------------------- narrower
+   The film keeps the full screen, the two panels stack, and the dictionary
+   card follows the copy. */
+
+@media (max-width: 1023px) {
+  main > section.hero--ec > .hero__bg { top: 0; bottom: 0; height: 100%; }
+  .hero--ec .hero__row > * { grid-column: 1 / -1; }
+  .hero--ec .hero__dict { margin-top: var(--s-6); align-self: stretch; }
+  .hero--ec .hero__panel { padding: var(--s-6); }
+  .pillars { grid-template-columns: repeat(2, 1fr); }
+  .lineage { grid-template-columns: repeat(2, 1fr); }
+  .lineage > div:nth-child(2n) { border-right: 0; }
+  .lineage > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .people { grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+  .arenas { grid-template-columns: 1fr; gap: var(--s-6); }
+  .briefings > article { grid-template-columns: 44px 160px 1fr; }
+}
+
+@media (max-width: 639px) {
+  main > section.hero--ec { height: auto; }
+  .gate-panel .form { grid-template-columns: 1fr; }
+  .hero--ec .hero__facts-line { margin-top: var(--s-4); }
+  .pillars { grid-template-columns: 1fr; }
+  .lineage { grid-template-columns: 1fr; }
+  .lineage > div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .lineage > div:last-child { border-bottom: 0; }
+  .people { grid-template-columns: 1fr; }
+  .briefings > article { grid-template-columns: 44px 1fr; }
+  .briefings .excerpt, .briefings .by { grid-column: 2 / -1; }
+}
+
+/* ---------------------------------------------------------------- reduced motion
+   The kit's motion layer reads prefers-reduced-motion itself. The film rests
+   as its poster and the control goes with it. */
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-film__play { display: none; }
+}

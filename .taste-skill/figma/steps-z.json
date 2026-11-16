@@ -1,0 +1,16 @@
+[
+  {"click": [1836, 1164]},
+  {"wait": 700},
+  {"key": "Escape"},
+  {"wait": 500},
+  {"key": "Shift+="},
+  {"key": "Shift+="},
+  {"key": "Shift+="},
+  {"key": "Shift+="},
+  {"zoomNow": true},
+  {"shot": "z1"},
+  {"wheel": [960, 600, 0, 8]},
+  {"wheel": [960, 600, 900, 8]},
+  {"shot": "z2"},
+  {"url": true}
+]

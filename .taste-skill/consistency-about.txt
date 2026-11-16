@@ -1,0 +1,77 @@
+﻿consistency  C:\Users\kwena\Downloads\euclidean capital\about.html
+
+1440x900  6 screens  1 FAIL  6 WARN
+  WARN scroll-reveal   section#premise > div.wrap > div.grid.fill > figure.shot.span-6
+       animates in when scrolled into view (shrinks from 1.06, unblurs) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-02-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN no-visual       section#team  "Our team"
+       pictures, effects and mocks cover 21% of this section; a feature section needs a visual (about 25% or more)  [1440-04-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN copy-actions    div.hero-text.grid > div.hero-copy.span-6 > div.btn-row > a.btn.btn--secondary  "Read our investment approach"
+       2 labels for one target /approach.html: "Read our investment approach", "Read the investment approach"  [1440-01-copy-actions.jpg]
+       fix: few actions, one wording: at most 2 in the hero, the main action word for word in nav, hero and close
+  WARN section-gaps    section#premise / section#team
+       uneven space at the edge of a band: 74px outside its edge, 120px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-03-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#team / footer#contact
+       uneven space at the edge of a band: 117px outside its edge, 45px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-05-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN action-repeat   header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "request a briefing"
+       "request a briefing" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it  [1440-06-action-repeat.jpg]
+       fix: show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once
+  FAIL section-height  section#team  "Executive governance Our team Experience"
+       the section's content does not fit it: its lowest content ends 1736px below its top, past 1728px (the section less 72px of bottom padding) (SR-2)  [1440-rhythm-01-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+
+checks
+  PASS assets                 PASS shader-lint            PASS gl-fallback            
+  PASS empty-visual           PASS hero-fill              PASS flush                  
+  PASS placeholder            PASS sample-label           PASS caption                
+  PASS credit-wall            PASS nav                    PASS nav-covers             
+  PASS spill                  SKIP off-viewport           PASS fold-card              
+  PASS hover-spill            PASS overlap-text           SKIP collide                
+  SKIP tap-size               PASS row-gap                PASS cut-text               
+  PASS fold-cut               PASS marquee                PASS scroll-linked          
+  WARN scroll-reveal          PASS pinned                 PASS loop-pause             
+  SKIP reduced-motion         SKIP hidden-content         PASS webgl                  
+  WARN no-visual              PASS text-only              PASS card-visual            
+  PASS hidden-visual          PASS card-family            PASS card-layout            
+  PASS nesting                PASS effect-repeat          PASS ui-fit                 
+  PASS ui-centre              PASS dark-ground            PASS button-styles          
+  PASS button-shape           PASS same-action            PASS button-picture         
+  PASS cta                    PASS pricing-tiers          PASS copy-headline          
+  PASS copy-fact              PASS copy-headings          PASS copy-buttons           
+  WARN copy-actions           PASS heading-scale          PASS stagger                
+  PASS top-stagger            PASS off-grid               PASS col-edge               
+  PASS right-edge             PASS centre-axis            PASS tilt                   
+  PASS contrast               PASS text-contrast          PASS body-size              
+  PASS busy-ground            WARN section-gaps           PASS proximity              
+  PASS hole                   PASS links                  PASS forms                  
+  PASS photo-upscale          PASS photo-set              PASS photo-credit           
+  PASS nav-family             PASS nav-labels             PASS link-styles            
+  PASS heading-align          PASS label-centre           PASS fake-button            
+  PASS stranded-action        PASS orphan                 PASS unit-break             
+  PASS tab-wrap               PASS effects-fit            PASS fade-cut               
+  PASS photo-weight           PASS copy-length            PASS nav-current            
+  PASS progress-bar           PASS photo-repeat           PASS button-contrast        
+  PASS photo-print            PASS grounds                PASS split-align            
+  PASS fact-agree             PASS fold-action            PASS action-count           
+  PASS one-screen             PASS hover                  PASS hover-move             
+  PASS product-shown          PASS same-object            PASS font-load              
+  PASS visual-caption         PASS visual-empty           PASS effect-kind            
+  PASS hero-enter             PASS moment-none            PASS street-number          
+  PASS postcode               PASS coordinates            PASS company-number         
+  PASS phone-number           PASS hero-screen            FAIL section-height         
+  PASS section-air            PASS one-section            PASS one-heading            
+  PASS container-edges        PASS row-lines              PASS split-pair             
+  PASS motion-layer           PASS count-text             PASS loop-cycle             
+  PASS section-tile           PASS empty-area             PASS a11y-name              
+  PASS img-alt                PASS field-label            PASS heading-order          
+  PASS tabindex               PASS focus-ring             PASS focus-visible          
+  PASS focus-hidden           PASS skip-link              PASS menu-toggle            
+  PASS lang                   PASS page-meta              PASS share-meta             
+  WARN action-repeat          PASS map-link               PASS open-now               
+  PASS assumed                PASS run-on                 PASS form-fields            
+  PASS form-send              
+
+total  1 FAIL  6 WARN  (crops and report.json in C:\Users\kwena\Downloads\euclidean capital\.taste-skill\report-about)
